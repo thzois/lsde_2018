@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BTC - Comparison of Communities</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" type="text/css" href="styles/gexfjs.css" />
+        <link rel="stylesheet" type="text/css" href="styles/jquery-ui-1.10.3.custom.min.css" />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+        <script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script type="text/javascript" src="js/gexfjs.js"></script>
+        <script type="text/javascript" src="config.js"></script>
+    </head>
+    <body>
+        <div id="zonecentre" class="gradient">
+            <canvas id="carte" width="0" height="0">
+            </canvas>
+            <ul id="ctlzoom">
+                <li>
+                    <a href="#" id="zoomPlusButton" title="S'approcher"> </a>
+                </li>
+                <li id="zoomSliderzone">
+                    <div id="zoomSlider"></div>
+                </li>
+                <li>
+                    <a href="#" id="zoomMinusButton" title="S'éloigner"> </a>
+                </li>
+                <li>
+                    <a href="#" id="lensButton"> </a>
+                </li>
+                <li>
+                    <a href="#" id="edgesButton"> </a>
+                </li>
+            </ul>
+        </div>
+        <div id="overviewzone" class="gradient">
+            <canvas id="overview" width="0" height="0"></canvas>
+        </div>
+        <div id="leftcolumn">
+            <div id="unfold">
+                <a href="#" id="aUnfold" class="rightarrow"> </a>
+            </div>
+            <div id="leftcontent"></div>
+        </div>
+        <div id="titlebar">
+            <div id="maintitle">
+                <h1><a href="http://gephi.org/" target="_blank" title="Made with Gephi">Gephi: JavaScript GEXF Viewer</a></h1>
+            </div>
+            <form id="recherche">
+                <input id="searchinput" class="grey" autocomplete="off" />
+                <input id="searchsubmit" type="submit" />
+            </form>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                  $('#year').change(function(){
+                    var value = $(this).val();
+                    window.location.href = "#"+value+".json";
+                  });
+                });
+            </script>
+            <select id="year" style="float:right; margin-top:12px; margin-right:100px;">
+                <option value="2009">2009</option>
+                <option value="2010">2010</option>
+                <option value="2011">2011</option>
+            </select>
+        </div>
+        <ul id="autocomplete">
+        </ul>
+    </body>
+</html>

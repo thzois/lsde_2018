@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <title>BTC - Blockchain Structure Evolution</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	
+    <!-- Chart.js include -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="css/scrolling-nav.css" rel="stylesheet">
+
+    <!-- jQuery include -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+    
+    <!-- Size of graph charts -->
+    <script src="js/bar_chart.js"></script>
+    <script src="js/line_chart.js"></script>
+    <script src="js/pie_chart.js"></script>
+    <script src="js/grouped_bar_chart.js"></script>
+    <script src="js/stacked_line_chart.js"></script>
+    <script src="js/overall_grouped_bar_chart.js"></script>
+    <script src="js/percentage_chart.js"></script>
+    <script src="js/percentage_line_chart.js"></script>
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="./images/Bitcoin.png" style="width:38px;">&nbsp;<span style="vertical-align:middle;">Blockchain Structure Evolution</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#size">Size</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#tpr">TPR</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#diameter">Diameter</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#bridge">Bridge Ratio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#cc">Clustering Coefficient</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#conductance">Conductance</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#overall">Overall</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <header>
+      <div class="container text-center">
+      	<div class="row justify-content-center">
+      		<div class="col-sm-5">
+      			<img src="./images/vu_logo.svg">
+          </div>      		
+    			<div class="col-sm-5">	
+    				<img style="width:350px;" src="./images/btc_logo.png">
+          </div>
+      		<div class="col-md-8">
+	      		<p class="lead" style="text-align: justify;"><br>The <span style="font-weight:600">Bitcoin</span> blockchain consists of multiple blocks, where each contains a timestamp and a list of transactions among other information. The <span style="font-weight:600">transactions</span> of the blockchain form a <span style="font-weight:600">temporal graph</span>, where the addresses are the vertices and the transactions are the edges. We have captured some statistics about the <span style="font-weight:600">structure evolution</span> for each individual year and month from <span style="font-weight:600">2009</span> until March of <span style="font-weight:600">2017</span>. Below we represent the outcome of our research by creating some interactive visualizations with <a href="https://www.chartjs.org/" target="_blank">Chart.js.</a> Clicking on the boxes above each chart will allow you to filter out the results and make comparisons. For each metric we report on the left side the annual results, while on the right side you can observe the distribution through the months of each year. For more information related to our work please refer to the <a href="http://www.thzois.com/lsde08/lsde2018_report.pdf" target="_blank">report</a>.</p>
+      		</div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col-3">
+            Maria Papadaki<br>
+            <a href="mailto:m.papadaki@student.vu.nl?Subject=BTC - Structure Evolution" target="_top">m.papadaki@student.vu.nl</a>
+          </div>
+          <div class="col-3">
+            Thodoris Zois<br>
+            <a href="mailto:t.zois@student.vu.nl?Subject=BTC - Structure Evolution" target="_top">t.zois@student.vu.nl</a>
+          </div>
+          <div class="col-3">
+            Manuel Sanchez<br>
+            <a href="mailto:m.a.sanchezbernal@student.vu.nl?Subject=BTC - Structure Evolution" target="_top">m.a.sanchezbernal@student.vu.nl</a>
+          </div>
+          <div class="col"></div>
+        </div>
+      </div>
+    </header>
+
+    <section id="size" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mx-auto">
+            <h2>Size</h2>
+            <p class="lead" style="text-align: justify;">The size of a graph is defined as the total number of edges. The charts below represent the size of the bitcoin transactions graph. The pie chart shows the percentage of the contributed size of each year, to the whole size. Through these charts we are able to understand the evolution of the number of transactions on certain time periods.</p>
+            <div class="row justify-content-center" style="margin-top:50px;">
+              <div class="col-md-6">
+  	      			<canvas id="size_year" height="190"></canvas>
+  				    </div>      		
+              <div class="col-md-6">	
+                <canvas id="size_month" height="190"></canvas>
+              </div>
+            </div>
+            <br>
+            <div class="row justify-content-center">
+              <div class="col-md-12">  
+                <canvas id="size_year_pie" height="75"></canvas>
+              </div>
+            </div>
+            <script>
+              // Bar chart for the size of the graph per year 
+              var ctx = $("#size_year");
+              bar_chart(ctx, "/year/size_year.csv", "Size of graph per year", "Number of edges", "Year");
+
+              // Line chart for months comparison 
+			        var ctx = $("#size_month");
+      		    line_comparison_months(ctx, "/month/size_month.csv", "Comparison of the size of the graph per month", "Number of edges", "Month");
+
+              var ctx = $("#size_year_pie");
+              pie_chart(ctx, "/year/size_year.csv", "Percentage of size per year (Total: ");
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tpr">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mx-auto">
+            <h2>Triangle Participation Ratio (TPR)</h2>
+            <p class="lead" style="text-align: justify;">Triangle participation ratio is the fraction of vertices in a graph that belong in a triangle. TPR among other metrics is used to provide us an insight of the internal structure of the communities and quantify how well and with which structure are the members of the communities interconnected.
+            </p>
+            <div class="row justify-content-center" style="margin-top:50px;">
+              <div class="col-md-6">
+                <canvas id="tpr_year" height="190"></canvas>
+              </div>          
+              <div class="col-md-6">  
+                <canvas id="tpr_month" height="190"></canvas>
+              </div>
+            </div>
+            <script>
+              // Bar chart for the size of the graph per year 
+              var ctx = $("#tpr_year");
+              bar_chart(ctx, "/year/tpr_year.csv", "TPR per year", "TPR", "Year");
+
+              // Line chart for months comparison 
+              var ctx = $("#tpr_month");
+              line_comparison_months(ctx, "/month/tpr_month.csv", "Comparison of TPR per month", "TPR", "Month");
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="bridge" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mx-auto">
+            <h2>Bridge Ratio</h2>
+            <p class="lead" style="text-align: justify;">A bridge is defined as an edge whose deletion disconnects the graph and hence is increases the number of connected components. The bridge ratio, is the fraction of the bridges to the total number of the edges and shows the vulnerabilities of a graph. The results on the charts below are incomplete. As we discuss in our <a href="http://www.thzois.com/lsde08/lsde2018_report.pdf">report</a>, finding the bridges of a graph is a very heavy computation that needs many hours to complete and a lot of cluster resources.  
+            </p>
+            <div class="row justify-content-center" style="margin-top:50px;">
+              <div class="col-md-6">
+                <canvas id="bridge_year" height="190"></canvas>
+              </div>          
+              <div class="col-md-6">  
+                <canvas id="bridge_month" height="190"></canvas>
+              </div>
+            </div>
+            <script>
+              // Bar chart for the size of the graph per year 
+              var ctx = $("#bridge_year");
+              bar_chart(ctx, "/year/bridge_year.csv", "Bridge ratio of graph per year", "Bridge ratio", "Year");
+
+              // Line chart for months comparison 
+              var ctx = $("#bridge_month");
+              line_comparison_months(ctx, "/month/bridge_month.csv", "Comparison of the bridge ratio of the graph per month", "Bridge ratio", "Month");
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section id="diameter">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mx-auto">
+            <h2>Diameter</h2>
+            <p class="lead" style="text-align: justify;"> The diameter of a graph is the longest path of all shortest paths. In other words, a graph's diameter is the largest number of vertices which must be traversed in order to travel from one vertex to another excluding paths with backtrack, detour, or loop. Diameter is a metric that provides an indication about the structure of the graph by measuring the topological length or extent of a graph.</p>
+              <div class="row justify-content-center">
+                <div class="col-md-6">
+                  <canvas id="diameter_year" height="190"></canvas>
+                </div>          
+                <div class="col-md-6">  
+                  <canvas id="diameter_month" height="190"></canvas>
+                </div>
+              </div>
+              <script>
+                // Bar chart for the size of the graph per year 
+                var ctx = $("#diameter_year");
+                bar_chart(ctx, "/year/diameter_year.csv", "Diameter of graph per year", "Diameter", "Year");
+
+                // Line chart for months comparison 
+                var ctx = $("#diameter_month");
+                line_comparison_months(ctx, "/month/diameter_month.csv", "Comparison of the diameter of the graph per month for each year", "Diameter", "Month");
+              </script> 
+            </p>
+          </div>
+        </div>
+      </div>
+    </section> -->
+ 
+    <section id="cc">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mx-auto">
+            <h2>Clustering Coefficient</h2>
+            <p class="lead" style="text-align: justify;"> Clustering coefficient is a measure of the degree to which vertices in a graph tend to cluster together and we can separate it into three versions. The <span style="font-weight: 600">global</span>, is the fraction of the number of the closed triplets to the number of all triplets and it provides us with an overall indication of the clustering. The <span style="font-weight: 600">local</span> refers to a single vertex and shows how close its neighbours are to being a complete graph and finally, the <span style="font-weight: 600">average</span> which is the mean of the local clustering coefficient of all the vertices.</p>
+              <div class="row justify-content-center" style="margin-top:50px;">
+                  <div class="col-md-6">
+                      <canvas id="cc_year" height="300"></canvas>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="row justify-content-center">
+                          <div class="col-md-12">
+                              <canvas id="cc_month" height="168"></canvas>
+                          </div>
+                      </div>
+                      <div class="row justify-content-center">
+                          <div class="col-md-12">
+                              <canvas id="cc_month_2" height="133"></canvas>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            <script>
+              // Bar chart for the size of the graph per year 
+              var ctx = $("#cc_year");
+              grouped_bar_chart(ctx, "cc_year.csv", "Global and average clustering coefficient of graph per year", "Year");
+
+              // Line chart for months comparison 
+              var ctx = $("#cc_month");
+              var ctx_2 = $("#cc_month_2");
+              stacked_line_comparison_months(ctx, ctx_2, "/month/cc_month.csv", "Comparison of the global and average clustering coefficient of the graph per month", "Global CC", "Average CC", "Month");
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="conductance" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mx-auto">
+            <h2>Conductance</h2>
+            <p class="lead" style="text-align: justify;">The conductance is the product of minimum conductane of each cut. The graph needs to be divided into K non-overlapping cuts. For each cut, is the fraction of edges going out of the cut to the minimum total edges. Low conductance means that the graph is "well-knit", while high conductance means that there is a bottleneck. To compute conductance we use the <i>'Label Propagation'</i> algorithm to split the graph into communities. As we discuss in our <a href="http://www.thzois.com/lsde08/lsde2018_report.pdf">report</a>, computing the conductance of each community is a very heavy operation. In order to be able to obtain the results we select the top 10 communities in edges and we report the minimum conductance of those communities. Except from the results and the graph visualization below, we also include charts that represent the percentage of the number of edges of the selected communities proportional to the total number of edges of the graph. The graph visualization is related to the community which has the minimum conductance. However, we manage to visualize the communities until 2011 where the file size for the edges is 7.5MBs and the exported .gexf from Gephi is approximately 35MBs.
+            </p>
+            <div class="row justify-content-center" style="margin-top:50px;">
+              <div class="col-md-6">
+                <canvas id="conductance_year" height="190"></canvas>
+              </div>          
+              <div class="col-md-6">  
+                <canvas id="conductance_month" height="190"></canvas>
+              </div>
+            </div>
+            <div class="row justify-content-center" style="margin-top:50px;">
+              <div class="col-md-6">
+                <canvas id="percentage_year" height="190"></canvas>
+              </div>          
+              <div class="col-md-6">  
+                <canvas id="percentage_month" height="190"></canvas>
+              </div>
+            </div>
+            <br>
+            <div class="row justify-content-center">
+              <a href="./gexf-js/index.html" target="_blank">Graph visualization of the community that provides the conductance of the graph for each year</a>
+            </div>
+            <script>
+              // Bar chart for the size of the graph per year 
+              var ctx = $("#conductance_year");
+              bar_chart(ctx, "/year/conductance_year.csv", "Conductance of graph per year", "Conductance", "Year");
+
+              // Line chart for months comparison 
+              var ctx = $("#conductance_month");
+              line_comparison_months(ctx, "/month/conductance_month.csv", "Comparison of the conductance of the graph per month for each year", "Conductance", "Month");
+
+              var ctx = $("#percentage_year");
+              percentage_chart(ctx, "/year/conductance_year.csv", "Percentage of selected communities edges proportonial to the total number of edges per year", "Percentage of edges", "Year");
+
+              // Line chart for months comparison 
+              var ctx = $("#percentage_month");
+              percentage_line_comparison_months(ctx, "/month/conductance_month.csv", "Percentage of selected communities edges proportonial to the total number of edges per month", "Percentage of edges", "Month");              
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="overall">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mx-auto">
+            <h2>Overall</h2>
+            <p class="lead" style="text-align: justify;">The chart below demonstrates the combination of all metrics for each year. The purpose of this chart is to make comparisons between the metrics of the bitcoin blockchain transactions graph. We have normalized the values of each metric in order to be able to combine them in a single chart, as they were in a different scale. However, hovering on each bar will reveal the real value.</p>
+            <div class="row justify-content-center" style="margin-top:50px;">
+              <div class="col-md-12">
+                <canvas id="comparison_year" height="80"></canvas>
+              </div>          
+            </div>
+            <script>
+              // Bar chart for the size of the graph per year 
+              var ctx = $("#comparison_year");
+              overall_grouped_bar_chart(ctx, "Metrics comparison per year", "Year");
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; 2018 - LSDE Group 08</p>
+        <p class="m-0 text-center text-white" style="padding-top:2px;">BTC - Blockchain Structure Evolution</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="js/scrolling-nav.js"></script>
+  </body>
+
+</html>

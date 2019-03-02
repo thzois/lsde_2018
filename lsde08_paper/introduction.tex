@@ -1,0 +1,41 @@
+\section{Introduction}
+\label{sec:intro}
+
+The factor that is decisive for this work is the emerged use of the Bitcoin for electronical exchanges. Unlike traditional currencies, Bitcoin keeps the identity of its owner hidden, it is easily portable, divisible, and irreversible. A decentralized digital currency without a central bank or single administrator are the words that characterize Bitcoin. It can be sent from user-to-user on the peer-to-peer Bitcoin network enabling the provision of financial services at a dramatically lower cost, and at the same time providing users more power and freedom~\cite{begginers}. The entire Bitcoin network relies on the Blockchain technology, a shared public ledger.
+
+A Blockchain is a growing list of records that constitutes from blocks linked
+together by using cryptographic techniques. Each block contains among other a
+hash to the previous block, a timestamp, and a list of
+transactions~\cite{wikiBlockchain}. A transaction is a transfer of value
+between Bitcoin wallets. Those wallets keep a secret piece of data called a
+private key or seed, which is used to sign transactions while providing a
+mathematical proof that they have come from the owner of the wallet. The
+signature also prevents the transaction from being altered by anybody once it
+has been issued and keeps the identity of the user unknown~\cite{howworks}. 
+
+All the transaction in the Blockchain are confirmed by the miners of the
+network. Mining is the process of adding transaction records to the Bitcoin's
+blocks. It is intentionally designed to be resource-intensive and difficult, so
+that the number of blocks found each day by miners remain steady. The primary
+purpose of mining is to set the history of transactions in a way that it is
+impractical to modify by any one entity~\cite{wikiMining}. All transactions are
+broadcast to the network and are usually confirmed within 10 minutes, where a
+new block is created and added to the Blockchain.
+
+An indication about the fame that Bitcoin gained over the years are some statistics from 2015 to 2018 that refer to the number of Blockchain wallet users worldwide. Since the creation of the Bitcoin in 2009 the number of Blockchain wallets has been growing reaching over 28 million at the end of September 2018. More specifically, in 2015 the number of Blockchain wallets was about 4 million, by the end of 2016 increased to 10 million while for 2017 to 17 million and at last, by end of 2018 it surged to almost 29 million wallets~\cite{statistics}.
+
+Both the Bitcoin and the Blockchain are the object-of-interest of many studies, statistics and articles, that approach them from many different aspects in order to interpret data that come from either their own existance or from their analysis. Of course many of these studies are proposals that add a new dimension to Bitcoin or the Blockhain or even improve many different parts like the work of Ittay Eyal et al.~\cite{bitcoin-ng}.
+
+The purpose of this work is to statistically analyze the Bitcoin Blockhain
+structure evolution for each year, from 2009 until 2017. Due to the public
+nature of the Bitcoin Blockchain, anyone can have access to the data and obtain
+the complete history of transactions, which is approximately 98GBs. The key
+concept of our analysis is that each block contains a UNIX timestamp that
+allows us to split the transactions on certain time snapshots and form a
+temporal graph with them. Using those graphs we compute metrics such as Size,
+Diameter, Clustering Coefficient, Triangle Participation Ratio, Bridge Ratio
+and Conductance, which are the pieces of a puzzle that provides us with a
+complete image by visualizing them in order to conclude about 
+the structure evolution for each year. 
+
+The remainder of this manuscript is organized as follows. We begin by providing some background knowledge about the blocks and the transactions of the Bitcoin Blockchain as well as the metrics we compute in \secref{sec:background}. In \secref{sec:implementation} we describe the nature of our data, the tools that we use, the graph construction and the implementation of the algorithms. We describe our visualization types, and present our results in \secref{sec:results}. In \secref{sec:discussion} we discuss our approach, in \secref{sec:related} we survey related work and finally, in \secref{sec:conclusions} we conclude and address our future work.

@@ -1,0 +1,31 @@
+\section{Discussion}
+\label{sec:discussion} 
+Our approach to analyze structure evolution of the Bitcoin Blockchain 
+focuses on comparison between each year treating it as an individual transactions
+graph. That kind of approach does not provide a clean image though for the evolution over the years,
+however computing the metrics by taking into account also each
+previous year, is not feasible as the size of the graph increases dramatically. The computations are very heavy and 
+we lack of computational power. We faced many difficulties to compute most of the metrics even
+with our approach. Although we could not manage to master all the technical
+difficulties, we tried to approach them by making optimizations, using more of the available
+resources, trying different implementations and configuring Spark. We struggled
+a lot with Diameter, Bridge Ratio, Average Clustering Coefficient and
+Conductance. Our jobs never produced any results after more than 8 hours of
+running or failed due to memory exceptions. For each individual computation we
+used 100 executors with 1 core and 10GBs of memory per each. We even tried to
+increase the amount of given resources in late hours where the cluster was not
+used by other teams, however 8 hours in most cases were not enough to
+compute not even the results for 2009 which is the smallest graph. Generally,
+the graphs have a size class of some MBs except from 2014
+till 2016 that are some GBs. 
+
+From the Spark logs we observed that in some cases the Average Clustering Coefficient failed due to memory and the issue was data locality. It appeared that in certain stages when an executor was assigned a task whose input was not stored locally, the executor would fetch the block from a remote executor where the block was present. This block was then materialized in memory heap until the task was completed. Hence, to avoid the out of memory errors we should just increase the heap size so that remote blocks can fit. That kind of memory increment is huge enough and practically impossible with our available resources. Thus, we tried to use some partition strategies that GraphX provides but the result at the end was the same. Since we could not obtain the results, we asked the help of our colleague at the Institute of Computer Science of Foundation for Research and Technology Hellas (ICS-FORTH), who was able to compute it for the years 2014-2016 in a cluster of 7 machines with 32 cores and 256GBs of memory each.
+
+Computing the Diameter for 2009 and for each month of 2009 took 12 hours for a graph that does not exceed 5 MBs as a parquet file with a total size of 22.000 edges. Instead of using the open-source algorithm we also tried to create our own by using GraphFrames that are much faster than the traditional RDDs. Even though we had some kind of improvement, the job for 2010 was running about 5 hours and still no results were produced. 
+
+To compute Bridge Ratio we followed two approaches. The first one was of a high complexity as we tried to find the bridges by removing one edge at a time while checking if the number of connected components was inscreasing. If it did, that edge was a bridge. Our second approach is an algorithm derived from a C++ implementation~\cite{geeksForGeeks} that uses DFS in order to find the bridges on the graph. Like Diameter, finding bridges took also more than 8 hours for 2009. For 2010 after a certain point we got a stack-overflow exception due to the recursion that we use in our implementation. We then increased the stack to 1GB by using the -Xss on runtime. Even though the problem seemed to be solved, after 11 hours we did not have any result for 2010.
+
+
+For both Bridge Ratio and Diameter we tried to eliminate as much as possible the computations needed by removing the duplicate edges. Those edges as we refer in~\secref{sec:implementation}, are coming from the join between the input and the output transactions. Since the Bride Ratio and Diameter are based on finding shortest paths, duplicate edges increase the complexity of the computation, while removing them does not change the final results at all. However neither this elimination helped the situation as the algorithms were still running for many hours without results, and since we had other concerns we did not spend more time on that.
+
+In order to compute Conductance we transform the graph into communities by using the \textit{Label Propagation} algorithm that is already implemented in GraphX. We performed some experiments on the graph of 2016, since it is the largest, and for 25 iterrations the process took 8 and a half hours while for 10 iterations, took almost 4, so this is another bottleneck. In addition, the computation of Conductance after forming the communities was also very time consuming and hence, we followed the process described in \secref{sec:implementation}. Choosing only 10 communities to perform the computations for conductance was not our intention. With our setup and the constraints in the number of iterations for the \textit{Label Propagation}, computing Conductance took 35 hours and 30 minutes for years and the same for months. Finally, in our website~\cite{website}, we have created graph visualizations for the community that had the minimum Conductance, hence the Conductance of the graph. However, those visualizations are until 2011. The reason behind is the file size of the edges. For 2012 the size of the file is 800MBs while for 2013 it is more than 1GB. We measured the memory needed by Gephi on our local machines in order to load the file for 2013. Unfortunately, 10GBs of RAM were not enough and we were not able to load the graph and export the .gexf files for preview at our website.

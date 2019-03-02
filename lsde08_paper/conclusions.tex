@@ -1,0 +1,24 @@
+\section{Conclusions and Future Work}
+\label{sec:conclusions}
+
+The purpose of our work is to provide an insight of the evolution of the
+Bitcoin Blockchain transactions graph. To achieve this, we analyze 98GBs of
+data from which we keep only the necessary for the creation of the edges for each graph, managing 
+to reduce them to 14GBs of parquet files. We split the whole graph
+into subgraphs for each year and then for each month, so we can compute several
+indicative for-the-graph metrics on certain time snapshots. Then, we create the
+analogous visualizations which we upload at our website~\cite{website}. Our
+results show that the graph tends to increase progressively each year, reaching
+a peak in 2015. From the results it is obvious that since 2011 the activity of
+the network was intense. However, we do not have a compelete image for 2017,
+since our data are until March. 
+
+Engaging with such a large graph-dataset makes the usage of Spark in
+combination with GraphX decisive as they allow us to compute several metrics,
+providing the necessary tools for graph processing. However, Bridge Ratio and
+Diameter are too heavy computations and expensive algorithms. As the size of
+the graph per year increases to billion edges, those tools we had in our
+pleasure did not manage to provide any results, probably due to the lack of computation
+power. 
+
+As a future work we would like to approach the Bitcoin Blockchain graph in community analysis as described in the last paragraph of~\secref{sec:related}. This approach seems to apply better on large graphs and probably it would be faster to obtain the desired results.
